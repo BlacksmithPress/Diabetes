@@ -45,6 +45,23 @@ namespace BlacksmithPress.Diabetes.Cloud.Controllers
             return Ok(person);
         }
 
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PatchPerson(long id, Person person)
+        {
+            var actual = database.People.FirstOrDefault(p => p.Id == id);
+            if (actual == null)
+                return NotFound();
+
+            // Modify any provided properties here
+            if (!string.IsNullOrEmpty(person.Name))
+                actual.Name = person.Name;
+
+            // End of patching
+            database.SaveChanges();
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
         // PUT: api/People/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutPerson(long id, Person person)

@@ -64,5 +64,38 @@ namespace Tests
             context.SaveChanges();
         }
 
+        [Test]
+        public void PeopleController_Patch_EditsExistingPerson()
+        {
+            // arrange isolation
+            var context = new Context("DefaultConnection");
+            var controller = new PeopleController();
+
+            // arrange test
+            var subject = context.People.FirstOrDefault();
+            if (subject == null)
+            {
+                subject = new Person { Name = "Pre-existing Person" };
+                context.People.Add(subject);
+                context.SaveChanges();
+            }
+            var id = subject.Id;
+
+            // act
+            var actual = subject.Clone();
+            actual.Id = default(long);
+            actual.Name += " (edited)";
+            var result = controller.PatchPerson(id, actual);
+
+            // assert
+            context = new Context("DefaultConnection");
+            var expected = context.People.FirstOrDefault(p => p.Id == id);
+            actual.Name.ShouldBe(expected.Name);
+
+            // clean-up
+            context.People.Remove(expected);
+            context.SaveChanges();
+        }
+
     }
 }
