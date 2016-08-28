@@ -37,7 +37,7 @@ namespace BlacksmithPress.Diabetes.Persistence.Repositories
             }
         }
 
-        public virtual async Task<EntityType> Create(EntityType entity)
+        public virtual async Task<EntityType> CreateAsync(EntityType entity)
         {
             var json = JsonConvert.SerializeObject(entity, SerializerSettings.Instance.Json);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -52,19 +52,72 @@ namespace BlacksmithPress.Diabetes.Persistence.Repositories
             throw new InvalidDataException($"Exception while creating {typeof(EntityType).Name}: \"{response.ReasonPhrase}\".");
         }
 
+        public virtual EntityType Create(EntityType entity)
+        {
+            return CreateAsync(entity).Result;
+        }
+
+        public virtual async Task<EntityType> GetAsync(KeyType key)
+        {
+            var response = await Client.GetAsync($"{relativeUri}{key}");
+            if (!response.IsSuccessStatusCode)
+                return default(EntityType);
+
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<EntityType>(json, SerializerSettings.Instance.Json);
+        }
+
         public virtual EntityType Get(KeyType key)
         {
-            return default(EntityType);
+            return GetAsync(key).Result;
+        }
+
+        public virtual async Task<IEnumerable<EntityType>> GetAllAsync()
+        {
+            var response = await Client.GetAsync(relativeUri);
+            if (!response.IsSuccessStatusCode)
+                return default(IQueryable<EntityType>);
+
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<IEnumerable<EntityType>>(json, SerializerSettings.Instance.Json);
+        }
+
+        public virtual IEnumerable<EntityType> GetAll()
+        {
+            return GetAllAsync().Result;
+        }
+
+        public virtual async Task<EntityType> UpdateAsync(EntityType entity)
+        {
+            var json = JsonConvert.SerializeObject(entity, SerializerSettings.Instance.Json);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await Client.PutAsync($"{relativeUri}{entity.Id}", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                json = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<EntityType>(json, SerializerSettings.Instance.Json);
+            }
+
+            throw new InvalidDataException($"Exception while updating {typeof(EntityType).Name}: \"{response.ReasonPhrase}\".");
         }
 
         public virtual EntityType Update(EntityType entity)
         {
-            return entity;
+            return UpdateAsync(entity).Result;
+        }
+
+        public virtual async Task DeleteAsync(KeyType key)
+        {
+            var response = await Client.DeleteAsync($"{relativeUri}{key}");
+
+            if (!response.IsSuccessStatusCode)
+                throw new InvalidDataException($"Exception while deleting {typeof(EntityType).Name}: \"{response.ReasonPhrase}\".");
         }
 
         public virtual void Delete(KeyType key)
         {
-            ;
+            DeleteAsync(key).RunSynchronously();
         }
     }
 }

@@ -45,7 +45,7 @@ namespace Console
             var json = command.Arguments.Find(a => a.Name == "json").Value;
             var person = JsonConvert.DeserializeObject<Person>(json);
             var repository = new People(Configuration.Instance.Container);
-            var result = repository.Create(person).Result;
+            var result = repository.Create(person);
             System.Console.Out.WriteLine($"Created a Person (Id: {result.Id}, Name: \"{result.Name}\").");
             return 0;
         }
