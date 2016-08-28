@@ -3,14 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A6EB2AF2-ABD6-45D2-AB1F-02135D49CAC5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlacksmithPress.Diabetes.Cloud", "BlacksmithPress.Diabetes.Cloud\BlacksmithPress.Diabetes.Cloud.csproj", "{0CB9F79C-E7EC-468D-8A21-38E30359B640}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F66C0F32-36F0-4383-91A9-99C9425FFAE4}"
-	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{B98FC6F4-3E00-43FB-9D43-EB877F5620F1}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "BlacksmithPress.Diabetes.Cloud", "src\BlacksmithPress.Diabetes.Cloud\BlacksmithPress.Diabetes.Cloud.xproj", "{EF64D544-1289-4D3E-9B80-C40B571BB2C5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlacksmithPress.Diabetes.Data", "BlacksmithPress.Diabetes.Data\BlacksmithPress.Diabetes.Data.csproj", "{21C0ADE4-6D5A-4A0C-97E9-BA8DBF790709}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,15 +15,20 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EF64D544-1289-4D3E-9B80-C40B571BB2C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EF64D544-1289-4D3E-9B80-C40B571BB2C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EF64D544-1289-4D3E-9B80-C40B571BB2C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EF64D544-1289-4D3E-9B80-C40B571BB2C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CB9F79C-E7EC-468D-8A21-38E30359B640}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CB9F79C-E7EC-468D-8A21-38E30359B640}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CB9F79C-E7EC-468D-8A21-38E30359B640}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CB9F79C-E7EC-468D-8A21-38E30359B640}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B98FC6F4-3E00-43FB-9D43-EB877F5620F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B98FC6F4-3E00-43FB-9D43-EB877F5620F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B98FC6F4-3E00-43FB-9D43-EB877F5620F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B98FC6F4-3E00-43FB-9D43-EB877F5620F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21C0ADE4-6D5A-4A0C-97E9-BA8DBF790709}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21C0ADE4-6D5A-4A0C-97E9-BA8DBF790709}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21C0ADE4-6D5A-4A0C-97E9-BA8DBF790709}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21C0ADE4-6D5A-4A0C-97E9-BA8DBF790709}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{EF64D544-1289-4D3E-9B80-C40B571BB2C5} = {A6EB2AF2-ABD6-45D2-AB1F-02135D49CAC5}
 	EndGlobalSection
 EndGlobal
