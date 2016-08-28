@@ -14,19 +14,29 @@ namespace BlacksmithPress.Diabetes.Cloud.Controllers
 {
     public class PeopleController : ApiController
     {
-        private Context db = new Context("DefaultConnection");
+        public PeopleController()
+        {
+            this.database = new Context("DefaultConnection");
+        }
+
+        public PeopleController(Context database)
+        {
+            this.database = database;
+        }
+
+        private Context database;
 
         // GET: api/People
         public IQueryable<Person> GetPeople()
         {
-            return db.People;
+            return database.People;
         }
 
         // GET: api/People/5
         [ResponseType(typeof(Person))]
         public IHttpActionResult GetPerson(long id)
         {
-            Person person = db.People.Find(id);
+            Person person = database.People.Find(id);
             if (person == null)
             {
                 return NotFound();
@@ -49,11 +59,11 @@ namespace BlacksmithPress.Diabetes.Cloud.Controllers
                 return BadRequest();
             }
 
-            db.Entry(person).State = EntityState.Modified;
+            database.Entry(person).State = EntityState.Modified;
 
             try
             {
-                db.SaveChanges();
+                database.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -79,8 +89,8 @@ namespace BlacksmithPress.Diabetes.Cloud.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.People.Add(person);
-            db.SaveChanges();
+            database.People.Add(person);
+            database.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = person.Id }, person);
         }
@@ -89,14 +99,14 @@ namespace BlacksmithPress.Diabetes.Cloud.Controllers
         [ResponseType(typeof(Person))]
         public IHttpActionResult DeletePerson(long id)
         {
-            Person person = db.People.Find(id);
+            Person person = database.People.Find(id);
             if (person == null)
             {
                 return NotFound();
             }
 
-            db.People.Remove(person);
-            db.SaveChanges();
+            database.People.Remove(person);
+            database.SaveChanges();
 
             return Ok(person);
         }
@@ -105,14 +115,14 @@ namespace BlacksmithPress.Diabetes.Cloud.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                database.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool PersonExists(long id)
         {
-            return db.People.Count(e => e.Id == id) > 0;
+            return database.People.Count(e => e.Id == id) > 0;
         }
     }
 }
