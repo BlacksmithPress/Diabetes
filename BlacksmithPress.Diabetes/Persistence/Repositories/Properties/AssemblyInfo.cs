@@ -7,10 +7,10 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Repositories")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("This library provides a set of repositories for storing data for all Blacksmith Press Diabetes components")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Repositories")]
+[assembly: AssemblyCompany("Blacksmith Press")]
+[assembly: AssemblyProduct("Blacksmith Press Diabetes Management")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

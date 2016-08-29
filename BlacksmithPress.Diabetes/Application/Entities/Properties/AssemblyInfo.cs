@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Entities")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Application Entities")]
+[assembly: AssemblyDescription("This assembly implements the type system for all Blacksmith Press Diabetes components")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Entities")]
+[assembly: AssemblyCompany("Blacksmith Press")]
+[assembly: AssemblyProduct("Blacksmith Press Diabetes Management")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
