@@ -117,7 +117,7 @@ namespace BlacksmithPress.Diabetes.Persistence.Repositories
 
         public virtual void Delete(KeyType key)
         {
-            DeleteAsync(key).RunSynchronously();
+            DeleteAsync(key).Wait();
         }
     }
 }

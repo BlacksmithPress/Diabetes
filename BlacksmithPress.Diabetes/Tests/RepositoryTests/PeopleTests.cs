@@ -32,13 +32,72 @@ namespace RepositoryTests
             // arrange isolation
 
             // arrange test
-            var expected = new Person {Id = 1, Name = "Ken"} as IPerson;
 
             // act
             var actual =  repository.Create(new Person {Name = "Ken"});
 
             // assert
+            actual.Name.ShouldBe("Ken");
+            actual.Id.ShouldBeGreaterThan(0);
+
+            // clean-up
+            repository.Delete(actual.Id);
+        }
+
+
+        [Test]
+        public void PeopleRepository_Get_GetsAPerson()
+        {
+            // arrange isolation
+
+            // arrange test
+            var expected = repository.Create(new Person {Name = "Existing Person"});
+
+            // act
+            var actual = repository.Get(expected.Id);
+
+            // assert
             actual.ShouldBe(expected);
+
+            // clean-up
+            repository.Delete(expected.Id);
+        }
+
+
+        [Test]
+        public void PeopleRepository_Update_UpdatesExistingPerson()
+        {
+            // arrange isolation
+
+            // arrange test
+            var existing = repository.Create(new Person {Name = "Existing Person"});
+            var expected = new Person {Id = existing.Id, Name = "Existing Person (edited)"};
+
+            // act
+            var actual = repository.Update(expected);
+
+            // assert
+            actual.ShouldBe(expected);
+
+            // clean-up
+            repository.Delete(actual.Id);
+        }
+
+
+        [Test]
+        public void PeopleRepository_Delete_DeletesPerson()
+        {
+            // arrange isolation
+
+            // arrange test
+            var existing = repository.Create(new Person { Name = "Existing Person" });
+
+            // act
+            repository.Delete(existing.Id);
+            var actual = repository.Get(existing.Id);
+
+            // assert
+            actual.ShouldBeNull();
 
             // clean-up
         }

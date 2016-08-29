@@ -7,9 +7,8 @@ using BlacksmithPress.Diabetes.Types;
 
 namespace BlacksmithPress.Diabetes.Entities
 {
-    public class Person : IPerson
+    public class Person : Entity<long>, IPerson
     {
-        public long Id { get; set; }
         public string Name { get; set; }
     }
 }

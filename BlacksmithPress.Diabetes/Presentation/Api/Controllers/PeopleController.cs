@@ -45,7 +45,7 @@ namespace BlacksmithPress.Diabetes.Cloud.Controllers
             return Ok(person);
         }
 
-        [ResponseType(typeof(void))]
+        [ResponseType(typeof(Person))]
         public IHttpActionResult PatchPerson(long id, Person person)
         {
             var actual = database.People.FirstOrDefault(p => p.Id == id);
@@ -59,11 +59,11 @@ namespace BlacksmithPress.Diabetes.Cloud.Controllers
             // End of patching
             database.SaveChanges();
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok(actual);
         }
 
         // PUT: api/People/5
-        [ResponseType(typeof(void))]
+        [ResponseType(typeof(Person))]
         public IHttpActionResult PutPerson(long id, Person person)
         {
             if (!ModelState.IsValid)
@@ -94,7 +94,7 @@ namespace BlacksmithPress.Diabetes.Cloud.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok(person);
         }
 
         // POST: api/People
