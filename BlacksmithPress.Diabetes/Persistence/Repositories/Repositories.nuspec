@@ -8,7 +8,7 @@
     <owners>$author$</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>First build as a nuget package.</releaseNotes>
+    <releaseNotes>People repository is passing all tests.</releaseNotes>
     <copyright>Copyright 2016</copyright>
   </metadata>
 </package>

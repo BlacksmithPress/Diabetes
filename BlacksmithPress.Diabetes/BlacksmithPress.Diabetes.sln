@@ -79,4 +79,11 @@ Global
 		{BEE0F309-BB18-45F4-A218-A564AFEE5A69} = {890DF942-7301-411B-B764-907CEACA906A}
 		{C319A957-A9B6-4B29-BA80-2246849054BF} = {CAD61762-9E8C-4FCD-99B7-3F2C1D530AF1}
 	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		BuildVersion_UseUniversalClock = True
+		BuildVersion_UseGlobalSettings = True
+		BuildVersion_UpdateFileVersion = True
+		BuildVersion_UpdateAssemblyVersion = True
+		BuildVersion_StartDate = 2016/9/1
+	EndGlobalSection
 EndGlobal
