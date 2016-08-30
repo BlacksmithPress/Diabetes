@@ -23,6 +23,7 @@ namespace BlacksmithPress.Diabetes.Entities
                 var builder = new ContainerBuilder();
                 builder.RegisterType<Person>().As<IPerson>();
                 builder.RegisterInstance(this).As<IConfiguration>();
+                builder.RegisterType<Measurement>().As<IMeasurement>();
                 container = builder.Build();
                 return container;
             }

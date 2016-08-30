@@ -80,10 +80,12 @@ Global
 		{C319A957-A9B6-4B29-BA80-2246849054BF} = {CAD61762-9E8C-4FCD-99B7-3F2C1D530AF1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		BuildVersion_UseUniversalClock = True
-		BuildVersion_UseGlobalSettings = True
-		BuildVersion_UpdateFileVersion = True
-		BuildVersion_UpdateAssemblyVersion = True
+		BuildVersion_DetectChanges = False
+		BuildVersion_IncrementBeforeBuild = False
 		BuildVersion_StartDate = 2016/9/1
+		BuildVersion_UpdateAssemblyVersion = False
+		BuildVersion_UpdateFileVersion = False
+		BuildVersion_UseGlobalSettings = False
+		BuildVersion_UseUniversalClock = False
 	EndGlobalSection
 EndGlobal
