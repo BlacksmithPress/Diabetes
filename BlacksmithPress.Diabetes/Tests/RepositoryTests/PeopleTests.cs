@@ -17,13 +17,9 @@ namespace RepositoryTests
     {
         public PeopleTests()
         {
-            configuration = new Configuration();
-            container = configuration.Container;
-            repository = new People(container);
+            repository = new People();
         }
 
-        private IConfiguration configuration;
-        private IContainer container;
         private People repository;
 
         [Test]

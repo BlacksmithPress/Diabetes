@@ -18,6 +18,17 @@ namespace BlacksmithPress.Diabetes.Persistence.Repositories
         private IConfiguration configuration;
         private string relativeUri;
 
+
+        protected static IContainer BuildDefaultContainer()
+        {
+            var builder = new ContainerBuilder();
+            builder.RegisterType<Configuration>().As<IConfiguration>();
+            builder.RegisterType<Person>().As<IPerson>();
+            builder.RegisterType<Measurement>().As<IMeasurement>();
+            return builder.Build();
+        }
+
+
         public Repository(IContainer container, string uri)
         {
             this.container = container;

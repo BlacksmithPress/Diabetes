@@ -10,6 +10,9 @@ namespace BlacksmithPress.Diabetes.Persistence.Repositories
 {
     public class Measurements : Repository<IMeasurement, long>
     {
+        public Measurements() : this(BuildDefaultContainer()) { }
+
+
         public Measurements(IContainer container) : base(container, "measurements/") {}
     }
 }
