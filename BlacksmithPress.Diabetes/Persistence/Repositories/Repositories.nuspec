@@ -8,7 +8,7 @@
     <owners>$author$</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Added default constructors to the repositories, so you no longer need to define your own containers.</releaseNotes>
+    <releaseNotes>Added intellisense documentation.</releaseNotes>
     <copyright>Copyright 2016</copyright>
   </metadata>
 </package>
