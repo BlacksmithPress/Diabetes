@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlacksmithPress.Diabetes.Cloud.Controllers;
-using BlacksmithPress.Diabetes.Data;
+using BlacksmithPress.Diabetes.Persistence.Database;
 using MongoDB.Driver;
 using NodaTime;
 using NUnit.Framework;

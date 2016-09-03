@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BlacksmithPress.Diabetes.Data
+namespace BlacksmithPress.Diabetes.Persistence.Database
 {
     public enum MeasuredAttribute
     {

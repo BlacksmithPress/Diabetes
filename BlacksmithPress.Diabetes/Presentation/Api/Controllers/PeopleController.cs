@@ -8,7 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using BlacksmithPress.Diabetes.Data;
+using BlacksmithPress.Diabetes.Persistence.Database;
 
 namespace BlacksmithPress.Diabetes.Cloud.Controllers
 {

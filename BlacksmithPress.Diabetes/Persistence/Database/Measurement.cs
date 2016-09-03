@@ -1,8 +1,7 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using NodaTime;
 
-namespace BlacksmithPress.Diabetes.Data
+namespace BlacksmithPress.Diabetes.Persistence.Database
 {
     public class Measurement 
     {

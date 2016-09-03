@@ -1,8 +1,7 @@
-namespace BlacksmithPress.Diabetes.Data.Migrations
+using System.Data.Entity.Migrations;
+
+namespace BlacksmithPress.Diabetes.Persistence.Database.Migrations
 {
-    using System;
-    using System.Data.Entity.Migrations;
-    
     public partial class Measurements : DbMigration
     {
         public override void Up()
