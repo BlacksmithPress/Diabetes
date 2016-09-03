@@ -58,5 +58,41 @@ namespace RepositoryTests
             measurements.Delete(actual.Id);
         }
 
+
+        [Test]
+        public void MeasurementsRepository_AssignNewPersonToSubject_CreatesRelationshipNotEmbeddedPerson()
+        {
+            // arrange isolation
+            DeletePeople("Karl Smirnoff");
+
+            // arrange test
+
+            // act
+            var subject = new Person {Name = "Karl Smirnoff"};
+            var measurement = new Measurement {Subject = subject};
+            measurements.Create(measurement);
+            var actual = people.GetAll().FirstOrDefault(p => p.Name == "Karl Smirnoff");
+
+            // assert
+            actual.ShouldNotBeNull();
+            actual.Id.ShouldBeGreaterThan(0);
+
+
+            // clean-up
+            DeletePeople("Karl Smirnoff");
+        }
+
+        private void DeletePeople(string name)
+        {
+            var persons = people.GetAll().Where(p => p.Name == name);
+            foreach (var person in persons)
+            {
+                foreach (var measurement in measurements.GetAll().Where(m => m.Subject.Id == person.Id))
+                {
+                    measurements.Delete(measurement.Id);
+                }
+                people.Delete(person.Id);
+            }
+        }
     }
 }

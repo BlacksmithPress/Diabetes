@@ -116,5 +116,26 @@ namespace RepositoryTests
         }
 
 
+        [Test]
+        public void PeopleRepository_GetOrCreate_GetsEthan()
+        {
+            // arrange isolation
+
+            // arrange test
+
+            // act
+            var repository = new People();
+            var ethan = repository.GetAll().FirstOrDefault(p => p.Name == "Ethan");
+
+            if (ethan == null)
+                ethan = repository.Create(new Person { Name = "Ethan" });
+
+            // assert
+            ethan.Name.ShouldBe("Ethan");
+
+            // clean-up
+        }
+
+
     }
 }

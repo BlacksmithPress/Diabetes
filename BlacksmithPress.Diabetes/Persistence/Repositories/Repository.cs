@@ -80,7 +80,8 @@ namespace BlacksmithPress.Diabetes.Persistence.Repositories
             if (response.IsSuccessStatusCode)
             {
                 json = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<EntityType>(json, SerializerSettings.Instance.Json);
+                entity = JsonConvert.DeserializeObject<EntityType>(json, SerializerSettings.Instance.Json);
+                return entity;
             }
 
             throw new InvalidDataException($"The API returned a non-success result, while creating the {typeof(EntityType).Name}: [{response.StatusCode}] \"{response.ReasonPhrase}\".");
@@ -160,7 +161,8 @@ namespace BlacksmithPress.Diabetes.Persistence.Repositories
             if (response.IsSuccessStatusCode)
             {
                 json = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<EntityType>(json, SerializerSettings.Instance.Json);
+                entity = JsonConvert.DeserializeObject<EntityType>(json, SerializerSettings.Instance.Json);
+                return entity;
             }
 
             throw new InvalidDataException($"Exception while updating {typeof(EntityType).Name}: \"{response.ReasonPhrase}\".");

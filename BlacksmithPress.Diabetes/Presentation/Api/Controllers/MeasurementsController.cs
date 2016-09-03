@@ -19,7 +19,7 @@ namespace BlacksmithPress.Diabetes.Cloud.Controllers
         // GET: api/Measurements
         public IQueryable<Measurement> GetMeasurements()
         {
-            return db.Measurements;
+            return db.Measurements.Include("Subject");
         }
 
         // GET: api/Measurements/5
