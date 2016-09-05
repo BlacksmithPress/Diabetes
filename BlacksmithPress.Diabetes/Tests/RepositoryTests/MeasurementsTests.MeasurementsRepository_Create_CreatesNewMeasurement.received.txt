@@ -1,13 +1,13 @@
 ﻿{
   "Timestamp": {
-    "ticks": 14725579120971531
+    "ticks": 14730974158274209
   },
   "Subject": {
     "Name": "Ken",
-    "Id": 41
+    "Id": 62
   },
   "Attribute": "Glucose",
   "UnitOfMeasure": "mgdL",
   "Amount": 150.0,
-  "Id": 4
+  "Id": 14
 }

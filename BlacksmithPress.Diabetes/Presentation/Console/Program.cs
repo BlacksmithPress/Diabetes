@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using BlacksmithPress.Diabetes.Entities;
@@ -44,7 +45,7 @@ namespace Console
             var command = _application.Commands.Find(c => c.Name == "people").Commands.Find(c => c.Name == "add");
             var json = command.Arguments.Find(a => a.Name == "json").Value;
             var person = JsonConvert.DeserializeObject<Person>(json);
-            var repository = new People(Configuration.Instance.Container);
+            var repository = new People(Configuration.Instance.Container, new NetworkCredential());
             var result = repository.Create(person);
             System.Console.Out.WriteLine($"Created a Person (Id: {result.Id}, Name: \"{result.Name}\").");
             return 0;

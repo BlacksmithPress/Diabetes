@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
+using System.Net;
 using BlacksmithPress.Diabetes.Entities;
 using BlacksmithPress.Diabetes.Types;
 
@@ -18,12 +19,12 @@ namespace BlacksmithPress.Diabetes.Persistence.Repositories
         /// <summary>
         /// Initializes a new instance of the <see cref="People"/> class using a default container.
         /// </summary>
-        public People() : this(BuildDefaultContainer()) {}
+        public People(NetworkCredential credentials) : this(BuildDefaultContainer(), credentials) {}
 
         /// <summary>
         /// Initializes a new instance of the <see cref="People"/> class.
         /// </summary>
         /// <param name="container">The container to use for constructing entities.</param>
-        public People(IContainer container) : base(container, "people/") {}
+        public People(IContainer container, NetworkCredential credentials) : base(container, "people/", credentials) {}
     }
 }

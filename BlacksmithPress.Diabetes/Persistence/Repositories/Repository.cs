@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
@@ -22,6 +24,7 @@ namespace BlacksmithPress.Diabetes.Persistence.Repositories
         private IContainer container;
         private IConfiguration configuration;
         private string relativeUri;
+        private NetworkCredential credentials;
 
         /// <summary>
         /// Builds a default container that defines the entity implementations used by this repositories library.
@@ -42,11 +45,12 @@ namespace BlacksmithPress.Diabetes.Persistence.Repositories
         /// </summary>
         /// <param name="container">The container to use for constructing entities.</param>
         /// <param name="uri">The URI of the persistence API.</param>
-        public Repository(IContainer container, string uri)
+        public Repository(IContainer container, string uri, NetworkCredential credentials)
         {
             this.container = container;
             this.configuration = this.container.Resolve<IConfiguration>();
             this.relativeUri = uri;
+            this.credentials = credentials;
         }
 
         /// <summary>
@@ -61,6 +65,8 @@ namespace BlacksmithPress.Diabetes.Persistence.Repositories
                 {
                     BaseAddress = configuration.PersistenceUri,
                 };
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
+                    this.credentials.ToBasicAuthentication());
                 return client;
             }
         }

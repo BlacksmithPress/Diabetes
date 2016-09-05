@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -90,24 +91,65 @@ namespace Tests
 
 
         [Test]
-        public void UsersController_SunnyDay_RequiresAuthentication()
+        public void UsersController_NoCredentials_RequiresAuthentication()
         {
             // arrange isolation
 
             // arrange test
             var client = new HttpClient()
             {
-                BaseAddress = new Uri("http://localhost:10164/"),
+                BaseAddress = new Uri("http://diabetes.blacksmithpress.com.local/"),
             };
 
             // act
-            var actual = client.GetAsync("api/users/1").Result;
+            var actual = client.GetAsync("api/users/").Result;
+
+            // assert
+            actual.StatusCode.ShouldBe(HttpStatusCode.Unauthorized);
+
+            // clean-up
+        }
+
+        [Test]
+        public void UsersController_WithCredentials_RequiresAuthentication()
+        {
+            // arrange isolation
+
+            // arrange test
+            var client = new HttpClient()
+            {
+                BaseAddress = new Uri("http://diabetes.blacksmithpress.com.local/"),
+            };
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", "a2VuOlBhc3N3b3Jk");
+
+            // act
+            var actual = client.GetAsync("api/users/").Result;
 
             // assert
             actual.StatusCode.ShouldBe(HttpStatusCode.OK);
 
             // clean-up
         }
+
+
+        [Test]
+        public void User_ToBasicAuthentication_ReturnsAuthenticationHeaderValue()
+        {
+            // arrange isolation
+
+            // arrange test
+            var expected = "a2VuOlBhc3N3b3Jk";
+            var user = new User {Username = "ken", Password = "Password"};
+
+            // act
+            var actual = user.ToBasicAuthentication();
+
+            // assert
+            actual.ShouldBe(expected);
+
+            // clean-up
+        }
+
 
     }
 }

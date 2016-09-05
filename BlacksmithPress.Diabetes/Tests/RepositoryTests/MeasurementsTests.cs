@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
@@ -20,8 +21,8 @@ namespace RepositoryTests
         {
             configuration = new Configuration();
             container = configuration.Container;
-            measurements = new Measurements(container);
-            people = new People(container);
+            measurements = new Measurements(container, new NetworkCredential());
+            people = new People(container, new NetworkCredential());
         }
 
         private IConfiguration configuration;

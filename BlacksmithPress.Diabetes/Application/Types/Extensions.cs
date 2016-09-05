@@ -15,5 +15,14 @@ namespace BlacksmithPress.Diabetes.Types
                 && these.UserName == credentials.UserName
                 && (these.Password == credentials.Password);
         }
+
+
+        public static string ToBasicAuthentication(this NetworkCredential credentials)
+        {
+            var plaintext = $"{credentials.UserName}:{credentials.Password}";
+            var bytes = Encoding.UTF8.GetBytes(plaintext);
+            return Convert.ToBase64String(bytes);
+        }
+
     }
 }

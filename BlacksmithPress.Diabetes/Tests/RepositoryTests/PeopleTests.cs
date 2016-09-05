@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
@@ -17,7 +18,7 @@ namespace RepositoryTests
     {
         public PeopleTests()
         {
-            repository = new People();
+            repository = new People(new NetworkCredential("ken","Password"));
         }
 
         private People repository;
@@ -124,7 +125,7 @@ namespace RepositoryTests
             // arrange test
 
             // act
-            var repository = new People();
+            var repository = new People(new NetworkCredential());
             var ethan = repository.GetAll().FirstOrDefault(p => p.Name == "Ethan");
 
             if (ethan == null)

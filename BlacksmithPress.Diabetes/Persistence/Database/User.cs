@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using BlacksmithPress.Diabetes.Types;
 
 namespace BlacksmithPress.Diabetes.Persistence.Database
 {
@@ -34,6 +35,11 @@ namespace BlacksmithPress.Diabetes.Persistence.Database
             if (user == null) return false;
 
             return $"{ToString()}{Password}" == $"{user.ToString()}{user.Password}";
+        }
+
+        public string ToBasicAuthentication()
+        {
+            return ToCredentials().ToBasicAuthentication();
         }
     }
 }
