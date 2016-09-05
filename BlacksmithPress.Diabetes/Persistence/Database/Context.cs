@@ -9,6 +9,7 @@ namespace BlacksmithPress.Diabetes.Persistence.Database
 {
     public class Context : DbContext
     {
+        public Context() : this("BlacksmithPress.Diabetes") {}
         public Context(string connectionString) : base(connectionString) {}
         public DbSet<Person> People { get; set; }
         public DbSet<Measurement> Measurements { get; set; }
