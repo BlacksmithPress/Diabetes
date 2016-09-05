@@ -45,6 +45,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IdentityModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,8 +54,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\Application\Types\Enumerations.cs">
+      <Link>Enumerations.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Application\Types\Extensions.cs">
+      <Link>Extensions.cs</Link>
+    </Compile>
     <Compile Include="Context.cs" />
-    <Compile Include="Enumerations.cs" />
     <Compile Include="Measurement.cs" />
     <Compile Include="Migrations\201608281417442_People.cs" />
     <Compile Include="Migrations\201608281417442_People.Designer.cs">
@@ -63,6 +69,10 @@
     <Compile Include="Migrations\201608281418227_Measurements.cs" />
     <Compile Include="Migrations\201608281418227_Measurements.Designer.cs">
       <DependentUpon>201608281418227_Measurements.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609051333202_AddUsernameToUser.cs" />
+    <Compile Include="Migrations\201609051333202_AddUsernameToUser.Designer.cs">
+      <DependentUpon>201609051333202_AddUsernameToUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Person.cs" />
@@ -80,11 +90,14 @@
     <EmbeddedResource Include="Migrations\201608281418227_Measurements.resx">
       <DependentUpon>201608281418227_Measurements.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609051333202_AddUsernameToUser.resx">
+      <DependentUpon>201609051333202_AddUsernameToUser.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UseUniversalClock="True" BuildVersion_UseGlobalSettings="True" BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_StartDate="2016/9/1" />
+      <UserProperties BuildVersion_StartDate="2016/9/1" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" BuildVersion_UseGlobalSettings="True" BuildVersion_UseUniversalClock="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

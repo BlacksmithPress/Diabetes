@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using BlacksmithPress.Diabetes.Cloud.Controllers;
 using BlacksmithPress.Diabetes.Persistence.Database;
-using MongoDB.Driver;
 using NUnit.Framework;
 using ObjectApproval;
 using Shouldly;

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BlacksmithPress.Diabetes.Cloud.Controllers;
 using BlacksmithPress.Diabetes.Persistence.Database;
-using MongoDB.Driver;
+using BlacksmithPress.Diabetes.Types;
 using NodaTime;
 using NUnit.Framework;
 using ObjectApproval;
@@ -22,7 +22,7 @@ namespace Tests
         {
             // arrange isolation
             var id = default(long);
-            using (var context = new Context())
+            using (var context = new Context("BlacksmithPress.Diabetes"))
             {
                 id = context.Measurements.Any() ? context.Measurements.Max(m => m.Id) + 1 : 1;
             }
@@ -42,7 +42,7 @@ namespace Tests
             var result = controller.PostMeasurement(expected);
 
             // assert
-            using (var context = new Context())
+            using (var context = new Context("BlacksmithPress.Diabetes"))
             {
                 var actual = context.Measurements.Find(id);
                 expected.Id = id;

@@ -1,62 +1,63 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Description;
+using System.Web.Http.Results;
 using BlacksmithPress.Diabetes.Persistence.Database;
 
 namespace BlacksmithPress.Diabetes.Cloud.Controllers
 {
     [Authorize]
     [BasicAuthentication]
-    public class PeopleController : ApiController
+    public class UsersController : ApiController
     {
-        public PeopleController()
+        public UsersController()
         {
             this.database = new Context("BlacksmithPress.Diabetes");
         }
 
-        public PeopleController(Context database)
+        public UsersController(Context database)
         {
             this.database = database;
         }
 
         private Context database;
 
-        // GET: api/People
-        public IQueryable<Person> GetPeople()
+        // GET: api/Users
+        public IQueryable<User> GetUsers()
         {
-            return database.People;
+            return database.Users;
         }
 
-        // GET: api/People/5
-        [ResponseType(typeof(Person))]
-        public IHttpActionResult GetPerson(long id)
+        // GET: api/Users/5
+        [ResponseType(typeof(User))]
+        public IHttpActionResult GetUser(long id)
         {
-            Person person = database.People.Find(id);
-            if (person == null)
+            User user = database.Users.Find(id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return Ok(person);
+            return Ok(user);
         }
 
-        [ResponseType(typeof(Person))]
-        public IHttpActionResult PatchPerson(long id, Person person)
+        [ResponseType(typeof(User))]
+        public IHttpActionResult PatchUser(long id, User user)
         {
-            var actual = database.People.FirstOrDefault(p => p.Id == id);
+            var actual = database.Users.FirstOrDefault(p => p.Id == id);
             if (actual == null)
                 return NotFound();
 
             // Modify any provided properties here
-            if (!string.IsNullOrEmpty(person.Name))
-                actual.Name = person.Name;
+            if (!string.IsNullOrEmpty(user.Name))
+                actual.Name = user.Name;
 
             // End of patching
             database.SaveChanges();
@@ -64,21 +65,21 @@ namespace BlacksmithPress.Diabetes.Cloud.Controllers
             return Ok(actual);
         }
 
-        // PUT: api/People/5
-        [ResponseType(typeof(Person))]
-        public IHttpActionResult PutPerson(long id, Person person)
+        // PUT: api/Users/5
+        [ResponseType(typeof(User))]
+        public IHttpActionResult PutUser(long id, User user)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != person.Id)
+            if (id != user.Id)
             {
                 return BadRequest();
             }
 
-            database.Entry(person).State = EntityState.Modified;
+            database.Entry(user).State = EntityState.Modified;
 
             try
             {
@@ -86,7 +87,7 @@ namespace BlacksmithPress.Diabetes.Cloud.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PersonExists(id))
+                if (!UserExists(id))
                 {
                     return NotFound();
                 }
@@ -96,38 +97,38 @@ namespace BlacksmithPress.Diabetes.Cloud.Controllers
                 }
             }
 
-            return Ok(person);
+            return Ok(user);
         }
 
-        // POST: api/People
-        [ResponseType(typeof(Person))]
-        public IHttpActionResult PostPerson(Person person)
+        // POST: api/Users
+        [ResponseType(typeof(User))]
+        public IHttpActionResult PostUser(User user)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            database.People.Add(person);
+            database.Users.Add(user);
             database.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = person.Id }, person);
+            return CreatedAtRoute("DefaultApi", new { id = user.Id }, user);
         }
 
-        // DELETE: api/People/5
-        [ResponseType(typeof(Person))]
-        public IHttpActionResult DeletePerson(long id)
+        // DELETE: api/Users/5
+        [ResponseType(typeof(User))]
+        public IHttpActionResult DeleteUser(long id)
         {
-            Person person = database.People.Find(id);
-            if (person == null)
+            User user = database.Users.Find(id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            database.People.Remove(person);
+            database.Users.Remove(user);
             database.SaveChanges();
 
-            return Ok(person);
+            return Ok(user);
         }
 
         protected override void Dispose(bool disposing)
@@ -139,9 +140,9 @@ namespace BlacksmithPress.Diabetes.Cloud.Controllers
             base.Dispose(disposing);
         }
 
-        private bool PersonExists(long id)
+        private bool UserExists(long id)
         {
-            return database.People.Count(e => e.Id == id) > 0;
+            return database.Users.Count(e => e.Id == id) > 0;
         }
     }
 }

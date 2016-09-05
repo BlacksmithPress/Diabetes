@@ -12,9 +12,11 @@ using BlacksmithPress.Diabetes.Persistence.Database;
 
 namespace BlacksmithPress.Diabetes.Cloud.Controllers
 {
+    [Authorize]
+    [BasicAuthentication]
     public class MeasurementsController : ApiController
     {
-        private Context db = new Context();
+        private Context db = new Context("BlacksmithPress.Diabetes");
 
         // GET: api/Measurements
         public IQueryable<Measurement> GetMeasurements()

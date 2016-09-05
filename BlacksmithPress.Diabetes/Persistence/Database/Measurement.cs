@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using BlacksmithPress.Diabetes.Types;
 using NodaTime;
 
 namespace BlacksmithPress.Diabetes.Persistence.Database
