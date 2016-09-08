@@ -121,7 +121,7 @@ namespace RepositoryTests
         public void PeopleRepository_GetOrCreate_GetsEthan()
         {
             // arrange isolation
-
+            
             // arrange test
 
             // act
